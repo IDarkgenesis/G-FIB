@@ -4,14 +4,20 @@
 in vec2 vtexCoord;
 out vec4 fragColor;
 
-uniform sampler2D colorMap;
+uniform sampler2D explosion;
 uniform float time;
 
 void main()
 {
+    float slice= 1/30.;
+    int actFrame= int(mod(time/slice, 48));
+    int offT=5;
+    
+    int x= actFrame%8; //mod 8 per saber quina columna es  
+    int y= 5-actFrame/8; //8 per saber quina 
+
     
     
-    
-    vec2 actFrme= vec2(vtexCoord.s+(mod(time, 48)*0.5), vtexCoord.t+(mod(time,48)*0.5));
-    fragColor = texture(colorMap, actFrme);
+    fragColor = texture(explosion, vec2(vtexCoord.s*1/8. + x/8., vtexCoord.t*1/6. + y/6.));
+    fragColor *= fragColor.w;
 }
