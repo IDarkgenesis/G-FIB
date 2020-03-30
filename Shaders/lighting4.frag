@@ -25,6 +25,5 @@ void main()
     vec3 R = normalize(2*max(0.0,dot(auxN,L))*auxN-L);
     
     
-    
     fragColor = matAmbient*lightAmbient + matDiffuse*lightDiffuse*max(0.0,dot(auxN,L)) + matSpecular*lightSpecular*pow(max(0.0,dot(R,V)),matShininess);
 }
